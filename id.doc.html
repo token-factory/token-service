@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Graphql schema documentation</title>
+    <title>ID</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -50,7 +50,7 @@
                 Date
             </a>
         </li>
-        <li  title="ID">
+        <li class="slds-is-active" title="ID">
             <a href="id.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 ID
             </a>
@@ -240,9 +240,10 @@
         </div>
     </div>
     <div class="container">
-        
-        <h1 class="slds-text-heading--large">Graphql schema documentation</h1>
-        <div class="slds-text-body--regular"></div>
+        <p class="slds-text-title--caps slds-text-color--weak">SCALAR</p>
+        <h1 class="slds-text-heading--large">ID</h1>
+        <div class="slds-text-body--regular"><p>The <code>ID</code> scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as <code>&quot;4&quot;</code>) or integer (such as <code>4</code>) input value will be accepted as an ID.</p>
+</div>
     </div>
 </section>
 <section>
@@ -253,7 +254,18 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">schema</span> {</li><li></li><li><span class="tab"><span class="meta">query</span>: <a class="support type" href="query.doc.html">Query</a></span></li><li></li><li><span class="tab"><span class="meta">mutation</span>: <a class="support type" href="mutation.doc.html">Mutation</a></span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">scalar</span> <span class="identifier">ID</span></li></ul></code>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="require-by" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#require-by">
+                <i class="material-icons">link</i>
+            </a>
+            Require by
+        </h2>
+        <ul class="require-by"><li><a href="account.doc.html" title="Account - ">Account<em></em></a><li><li><a href="change_trust.doc.html" title="Change_Trust - ">Change_Trust<em></em></a><li><li><a href="create_account.doc.html" title="Create_Account - ">Create_Account<em></em></a><li><li><a href="history.doc.html" title="History - ">History<em></em></a><li><li><a href="payment.doc.html" title="Payment - ">Payment<em></em></a><li><li><a href="paymenttransaction.doc.html" title="PaymentTransaction - ">PaymentTransaction<em></em></a><li><li><a href="set_signers.doc.html" title="Set_Signers - ">Set_Signers<em></em></a><li><li><a href="set_threshold.doc.html" title="Set_Threshold - ">Set_Threshold<em></em></a><li><li><a href="transaction.doc.html" title="Transaction - ">Transaction<em></em></a><li></ul>
     </div>
 </section>
 <footer>

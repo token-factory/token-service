@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Graphql schema documentation</title>
+    <title>skip</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -220,7 +220,7 @@
                 include
             </a>
         </li>
-        <li  title="skip">
+        <li class="slds-is-active" title="skip">
             <a href="skip.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 skip
             </a>
@@ -240,9 +240,10 @@
         </div>
     </div>
     <div class="container">
-        
-        <h1 class="slds-text-heading--large">Graphql schema documentation</h1>
-        <div class="slds-text-body--regular"></div>
+        <p class="slds-text-title--caps slds-text-color--weak"></p>
+        <h1 class="slds-text-heading--large">skip</h1>
+        <div class="slds-text-body--regular"><p>Directs the executor to skip this field or fragment when the <code>if</code> argument is true.</p>
+</div>
     </div>
 </section>
 <section>
@@ -253,7 +254,18 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">schema</span> {</li><li></li><li><span class="tab"><span class="meta">query</span>: <a class="support type" href="query.doc.html">Query</a></span></li><li></li><li><span class="tab"><span class="meta">mutation</span>: <a class="support type" href="mutation.doc.html">Mutation</a></span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">directive</span> <span class="keyword operator ts">@skip</span>(<span class="meta">if</span>: <a class="support type" href="boolean.doc.html">Boolean</a>!) on <span class="keyword operator ts">FIELD</span> | <span class="keyword operator ts">FRAGMENT_SPREAD</span> | <span class="keyword operator ts">INLINE_FRAGMENT</span></li></ul></code>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="require-by" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#require-by">
+                <i class="material-icons">link</i>
+            </a>
+            Require by
+        </h2>
+        <div class="require-by anyone">This element is not required by anyone</div>
     </div>
 </section>
 <footer>

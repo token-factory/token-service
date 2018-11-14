@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Graphql schema documentation</title>
+    <title>History</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -95,7 +95,7 @@
 <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
     <h4 class="slds-text-title--caps slds-p-around--medium">Interfaces</h4>
     <ul>
-        <li  title="History">
+        <li class="slds-is-active" title="History">
             <a href="history.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 History
             </a>
@@ -240,8 +240,8 @@
         </div>
     </div>
     <div class="container">
-        
-        <h1 class="slds-text-heading--large">Graphql schema documentation</h1>
+        <p class="slds-text-title--caps slds-text-color--weak">INTERFACE</p>
+        <h1 class="slds-text-heading--large">History</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -253,7 +253,18 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">schema</span> {</li><li></li><li><span class="tab"><span class="meta">query</span>: <a class="support type" href="query.doc.html">Query</a></span></li><li></li><li><span class="tab"><span class="meta">mutation</span>: <a class="support type" href="mutation.doc.html">Mutation</a></span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">interface</span> <span class="identifier">History</span> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="meta">source_account</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">created_at</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="require-by" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#require-by">
+                <i class="material-icons">link</i>
+            </a>
+            Require by
+        </h2>
+        <ul class="require-by"><li><a href="change_trust.doc.html" title="Change_Trust - ">Change_Trust<em></em></a><li><li><a href="create_account.doc.html" title="Create_Account - ">Create_Account<em></em></a><li><li><a href="payment.doc.html" title="Payment - ">Payment<em></em></a><li><li><a href="query.doc.html" title="Query - ">Query<em></em></a><li><li><a href="set_signers.doc.html" title="Set_Signers - ">Set_Signers<em></em></a><li><li><a href="set_threshold.doc.html" title="Set_Threshold - ">Set_Threshold<em></em></a><li></ul>
     </div>
 </section>
 <footer>
