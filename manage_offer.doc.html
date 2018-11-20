@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>History</title>
+    <title>Manage_Offer</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -95,7 +95,7 @@
 <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
     <h4 class="slds-text-title--caps slds-p-around--medium">Interfaces</h4>
     <ul>
-        <li class="slds-is-active" title="History">
+        <li  title="History">
             <a href="history.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 History
             </a>
@@ -130,7 +130,7 @@
                 Create_Account
             </a>
         </li>
-        <li  title="Manage_Offer">
+        <li class="slds-is-active" title="Manage_Offer">
             <a href="manage_offer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Manage_Offer
             </a>
@@ -245,8 +245,8 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">INTERFACE</p>
-        <h1 class="slds-text-heading--large">History</h1>
+        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+        <h1 class="slds-text-heading--large">Manage_Offer</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -258,7 +258,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">interface</span> <span class="identifier">History</span> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Public key for the source account</span></span></li><li><span class="tab"><span class="meta">source_account</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Type of history</span></span></li><li><span class="tab"><span class="meta">type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Timestamp when the history record was created</span></span></li><li><span class="tab"><span class="meta">created_at</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Manage_Offer</span> <span class="keyword operator ts">implements</span> <a class="support type" href="history.doc.html">History</a> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Public key for the source account</span></span></li><li><span class="tab"><span class="meta">source_account</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Type of history</span></span></li><li><span class="tab"><span class="meta">type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Timestamp when this operation took place</span></span></li><li><span class="tab"><span class="meta">created_at</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Offer Id passed in. Zero signifies a new offer.</span></span></li><li><span class="tab"><span class="meta">offer_id</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Type of Asset being offered for sale</span></span></li><li><span class="tab"><span class="meta">selling_asset_type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Code of Asset being offered for sale</span></span></li><li><span class="tab"><span class="meta">selling_asset_code</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Issuer of Asset being offered for sale</span></span></li><li><span class="tab"><span class="meta">selling_asset_issuer</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Type of Asset being bought</span></span></li><li><span class="tab"><span class="meta">buying_asset_type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Code of Asset being bought</span></span></li><li><span class="tab"><span class="meta">buying_asset_code</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Issuer of Asset being bought</span></span></li><li><span class="tab"><span class="meta">buying_asset_issuer</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Amount of asset being offered for sale</span></span></li><li><span class="tab"><span class="meta">amount</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Price of asset being offered for sale</span></span></li><li><span class="tab"><span class="meta">price</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -269,7 +269,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="change_trust.doc.html" title="Change_Trust - ">Change_Trust<em></em></a><li><li><a href="create_account.doc.html" title="Create_Account - ">Create_Account<em></em></a><li><li><a href="manage_offer.doc.html" title="Manage_Offer - ">Manage_Offer<em></em></a><li><li><a href="payment.doc.html" title="Payment - ">Payment<em></em></a><li><li><a href="query.doc.html" title="Query - ">Query<em></em></a><li><li><a href="set_signers.doc.html" title="Set_Signers - ">Set_Signers<em></em></a><li><li><a href="set_threshold.doc.html" title="Set_Threshold - ">Set_Threshold<em></em></a><li></ul>
+        <div class="require-by anyone">This element is not required by anyone</div>
     </div>
 </section>
 <footer>
