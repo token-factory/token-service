@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>__DirectiveLocation</title>
+    <title>Offer</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -80,7 +80,7 @@
                 CacheControlScope
             </a>
         </li>
-        <li class="slds-is-active" title="__DirectiveLocation">
+        <li  title="__DirectiveLocation">
             <a href="directivelocation.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 __DirectiveLocation
             </a>
@@ -135,7 +135,7 @@
                 Manage_Offer
             </a>
         </li>
-        <li  title="Offer">
+        <li class="slds-is-active" title="Offer">
             <a href="offer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Offer
             </a>
@@ -255,10 +255,9 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">ENUM</p>
-        <h1 class="slds-text-heading--large">__DirectiveLocation</h1>
-        <div class="slds-text-body--regular"><p>A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.</p>
-</div>
+        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+        <h1 class="slds-text-heading--large">Offer</h1>
+        <div class="slds-text-body--regular"></div>
     </div>
 </section>
 <section>
@@ -269,7 +268,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">enum</span> <span class="identifier">__DirectiveLocation</span> {</li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a query operation.</span></span></li><li><span class="tab"><span class="meta">QUERY</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a mutation operation.</span></span></li><li><span class="tab"><span class="meta">MUTATION</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a subscription operation.</span></span></li><li><span class="tab"><span class="meta">SUBSCRIPTION</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a field.</span></span></li><li><span class="tab"><span class="meta">FIELD</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a fragment definition.</span></span></li><li><span class="tab"><span class="meta">FRAGMENT_DEFINITION</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a fragment spread.</span></span></li><li><span class="tab"><span class="meta">FRAGMENT_SPREAD</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an inline fragment.</span></span></li><li><span class="tab"><span class="meta">INLINE_FRAGMENT</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a schema definition.</span></span></li><li><span class="tab"><span class="meta">SCHEMA</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a scalar definition.</span></span></li><li><span class="tab"><span class="meta">SCALAR</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an object type definition.</span></span></li><li><span class="tab"><span class="meta">OBJECT</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a field definition.</span></span></li><li><span class="tab"><span class="meta">FIELD_DEFINITION</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an argument definition.</span></span></li><li><span class="tab"><span class="meta">ARGUMENT_DEFINITION</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an interface definition.</span></span></li><li><span class="tab"><span class="meta">INTERFACE</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to a union definition.</span></span></li><li><span class="tab"><span class="meta">UNION</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an enum definition.</span></span></li><li><span class="tab"><span class="meta">ENUM</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an enum value definition.</span></span></li><li><span class="tab"><span class="meta">ENUM_VALUE</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an input object type definition.</span></span></li><li><span class="tab"><span class="meta">INPUT_OBJECT</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Location adjacent to an input object field definition.</span></span></li><li><span class="tab"><span class="meta">INPUT_FIELD_DEFINITION</span></span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">type</span> <span class="identifier">Offer</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Price for the offer</span></span></li><li><span class="tab"><span class="meta">price</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Number of assets including in the offer</span></span></li><li><span class="tab"><span class="meta">amount</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -280,11 +279,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="directive.spec.html" title="__Directive - A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.
-
-In some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.">__Directive<em>A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.
-
-In some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.</em></a><li></ul>
+        <ul class="require-by"><li><a href="orderbook.doc.html" title="Orderbook - ">Orderbook<em></em></a><li></ul>
     </div>
 </section>
 <footer>
