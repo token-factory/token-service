@@ -95,16 +95,6 @@
 <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
     <h4 class="slds-text-title--caps slds-p-around--medium">Interfaces</h4>
     <ul>
-        <li  title="History">
-            <a href="history.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                History
-            </a>
-        </li>
-    </ul>
-</div>
-<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
-    <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
-    <ul>
         <li class="slds-is-active" title="Account">
             <a href="account.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Account
@@ -115,6 +105,16 @@
                 Asset
             </a>
         </li>
+        <li  title="History">
+            <a href="history.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                History
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
+    <ul>
         <li  title="Balance">
             <a href="balance.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Balance
@@ -123,6 +123,16 @@
         <li  title="Change_Trust">
             <a href="change_trust.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Change_Trust
+            </a>
+        </li>
+        <li  title="Core_Account">
+            <a href="core_account.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Core_Account
+            </a>
+        </li>
+        <li  title="Core_Asset">
+            <a href="core_asset.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Core_Asset
             </a>
         </li>
         <li  title="Create_Account">
@@ -183,6 +193,16 @@
         <li  title="Signer">
             <a href="signer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Signer
+            </a>
+        </li>
+        <li  title="TF_Account">
+            <a href="tf_account.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                TF_Account
+            </a>
+        </li>
+        <li  title="TF_Asset">
+            <a href="tf_asset.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                TF_Asset
             </a>
         </li>
         <li  title="Thresholds">
@@ -265,7 +285,7 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+        <p class="slds-text-title--caps slds-text-color--weak">INTERFACE</p>
         <h1 class="slds-text-heading--large">Account</h1>
         <div class="slds-text-body--regular"></div>
     </div>
@@ -278,7 +298,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Account</span> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Email address for user.  Will be used as display name of user and for login</span></span></li><li><span class="tab"><span class="meta">email</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Tenant id that the user is a member of</span></span></li><li><span class="tab"><span class="meta">tenantId</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   The description of the account</span></span></li><li><span class="tab"><span class="meta">description</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Public key that uniquely identifies the account</span></span></li><li><span class="tab"><span class="meta">public_key</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Secret that is part of the keypair with public</span></span></li><li><span class="tab"><span class="meta">secret</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Thresholds for the account</span></span></li><li><span class="tab"><span class="meta">thresholds</span>: <a class="support type" href="thresholds.doc.html">Thresholds</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Asset balances for the account</span></span></li><li><span class="tab"><span class="meta">balances</span>: [<a class="support type" href="balance.doc.html">Balance</a>] </span></li><li></li><li><span class="tab"><span class="comment line">#   Signers for the account</span></span></li><li><span class="tab"><span class="meta">signers</span>: [<a class="support type" href="signer.doc.html">Signer</a>] </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">interface</span> <span class="identifier">Account</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Public key that uniquely identifies the account</span></span></li><li><span class="tab"><span class="meta">public_key</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Secret that is part of the keypair with public</span></span></li><li><span class="tab"><span class="meta">secret</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Thresholds for the account</span></span></li><li><span class="tab"><span class="meta">thresholds</span>: <a class="support type" href="thresholds.doc.html">Thresholds</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Asset balances for the account</span></span></li><li><span class="tab"><span class="meta">balances</span>: [<a class="support type" href="balance.doc.html">Balance</a>] </span></li><li></li><li><span class="tab"><span class="comment line">#   Signers for the account</span></span></li><li><span class="tab"><span class="meta">signers</span>: [<a class="support type" href="signer.doc.html">Signer</a>] </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -289,7 +309,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="mutation.doc.html" title="Mutation - ">Mutation<em></em></a><li><li><a href="query.doc.html" title="Query - ">Query<em></em></a><li></ul>
+        <ul class="require-by"><li><a href="core_account.doc.html" title="Core_Account - ">Core_Account<em></em></a><li><li><a href="mutation.doc.html" title="Mutation - ">Mutation<em></em></a><li><li><a href="query.doc.html" title="Query - ">Query<em></em></a><li><li><a href="tf_account.doc.html" title="TF_Account - ">TF_Account<em></em></a><li></ul>
     </div>
 </section>
 <footer>

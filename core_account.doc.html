@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Asset</title>
+    <title>Core_Account</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -100,7 +100,7 @@
                 Account
             </a>
         </li>
-        <li class="slds-is-active" title="Asset">
+        <li  title="Asset">
             <a href="asset.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Asset
             </a>
@@ -125,7 +125,7 @@
                 Change_Trust
             </a>
         </li>
-        <li  title="Core_Account">
+        <li class="slds-is-active" title="Core_Account">
             <a href="core_account.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Core_Account
             </a>
@@ -285,8 +285,8 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">INTERFACE</p>
-        <h1 class="slds-text-heading--large">Asset</h1>
+        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+        <h1 class="slds-text-heading--large">Core_Account</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -298,7 +298,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">interface</span> <span class="identifier">Asset</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Public key of the asset issuer (creator)</span></span></li><li><span class="tab"><span class="meta">asset_issuer</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Alphanumeric class that identifies the asset type</span></span></li><li><span class="tab"><span class="meta">asset_type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Alphanumeric code that uniquely identifies the asset</span></span></li><li><span class="tab"><span class="meta">asset_code</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Core_Account</span> <span class="keyword operator ts">implements</span> <a class="support type" href="account.doc.html">Account</a> {</li><li></li><li><span class="tab"><span class="comment line">#   Public key that uniquely identifies the account</span></span></li><li><span class="tab"><span class="meta">public_key</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Secret that is part of the keypair with public</span></span></li><li><span class="tab"><span class="meta">secret</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Thresholds for the account</span></span></li><li><span class="tab"><span class="meta">thresholds</span>: <a class="support type" href="thresholds.doc.html">Thresholds</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Asset balances for the account</span></span></li><li><span class="tab"><span class="meta">balances</span>: [<a class="support type" href="balance.doc.html">Balance</a>]! </span></li><li></li><li><span class="tab"><span class="comment line">#   Signers for the account</span></span></li><li><span class="tab"><span class="meta">signers</span>: [<a class="support type" href="signer.doc.html">Signer</a>]! </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -309,7 +309,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="core_asset.doc.html" title="Core_Asset - ">Core_Asset<em></em></a><li><li><a href="mutation.doc.html" title="Mutation - ">Mutation<em></em></a><li><li><a href="offer.doc.html" title="Offer - ">Offer<em></em></a><li><li><a href="orderbook.doc.html" title="Orderbook - ">Orderbook<em></em></a><li><li><a href="query.doc.html" title="Query - ">Query<em></em></a><li><li><a href="tf_asset.doc.html" title="TF_Asset - ">TF_Asset<em></em></a><li></ul>
+        <div class="require-by anyone">This element is not required by anyone</div>
     </div>
 </section>
 <footer>
