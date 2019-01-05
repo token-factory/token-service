@@ -80,6 +80,11 @@
                 CacheControlScope
             </a>
         </li>
+        <li  title="Flag_Type">
+            <a href="flag_type.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Flag_Type
+            </a>
+        </li>
         <li  title="__DirectiveLocation">
             <a href="directivelocation.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 __DirectiveLocation
@@ -115,6 +120,11 @@
 <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
     <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
     <ul>
+        <li  title="Account_Flags">
+            <a href="account_flags.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Account_Flags
+            </a>
+        </li>
         <li  title="Balance">
             <a href="balance.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Balance
@@ -303,7 +313,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">type</span> <span class="identifier">Flags</span> {</li><li></li><li><span class="tab"><span class="meta">auth_required</span>: <a class="support type" href="boolean.doc.html">Boolean</a> </span></li><li></li><li><span class="tab"><span class="meta">auth_revocable</span>: <a class="support type" href="boolean.doc.html">Boolean</a> </span></li><li></li><li><span class="tab"><span class="meta">auth_immutable</span>: <a class="support type" href="boolean.doc.html">Boolean</a> </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Flags</span> {</li><li></li><li><span class="tab"><span class="comment line">#   With this setting, an anchor must approve anyone who wants to hold its asset.</span></span></li><li><span class="tab"><span class="meta">auth_required</span>: <a class="support type" href="boolean.doc.html">Boolean</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   With this setting, an anchor can set the authorize flag of an existing trustline </span></span></li><li><span class="tab"><span class="comment line">#   to freeze the assets held by an asset holder.</span></span></li><li><span class="tab"><span class="meta">auth_revocable</span>: <a class="support type" href="boolean.doc.html">Boolean</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   With this setting, none of the following authorization flags can be changed.</span></span></li><li><span class="tab"><span class="meta">auth_immutable</span>: <a class="support type" href="boolean.doc.html">Boolean</a> </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>

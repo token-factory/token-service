@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Set_Threshold</title>
+    <title>Account_Flags</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -120,7 +120,7 @@
 <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
     <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
     <ul>
-        <li  title="Account_Flags">
+        <li class="slds-is-active" title="Account_Flags">
             <a href="account_flags.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Account_Flags
             </a>
@@ -195,7 +195,7 @@
                 Set_Signers
             </a>
         </li>
-        <li class="slds-is-active" title="Set_Threshold">
+        <li  title="Set_Threshold">
             <a href="set_threshold.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Set_Threshold
             </a>
@@ -301,7 +301,7 @@
     </div>
     <div class="container">
         <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">Set_Threshold</h1>
+        <h1 class="slds-text-heading--large">Account_Flags</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -313,7 +313,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Set_Threshold</span> <span class="keyword operator ts">implements</span> <a class="support type" href="history.doc.html">History</a> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Public key for the source account</span></span></li><li><span class="tab"><span class="meta">source_account</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Type of history</span></span></li><li><span class="tab"><span class="meta">type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Timestamp when the threshold was added</span></span></li><li><span class="tab"><span class="meta">created_at</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Master key signing weight for the account</span></span></li><li><span class="tab"><span class="meta">master_key_weight</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Signing weight for low threshold transactions on the account</span></span></li><li><span class="tab"><span class="meta">low_threshold</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Signing weight for medium threshold transactions on the account</span></span></li><li><span class="tab"><span class="meta">med_threshold</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Signing weight for high threshold transactions on the account</span></span></li><li><span class="tab"><span class="meta">high_threshold</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Account_Flags</span> <span class="keyword operator ts">implements</span> <a class="support type" href="history.doc.html">History</a> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Public key for the source account</span></span></li><li><span class="tab"><span class="meta">source_account</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Type of history</span></span></li><li><span class="tab"><span class="meta">type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Timestamp when the history record was created</span></span></li><li><span class="tab"><span class="meta">created_at</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">clear_flags</span>: [<a class="support type" href="int.doc.html">Int</a>] </span></li><li></li><li><span class="tab"><span class="meta">clear_flags_s</span>: [<a class="support type" href="flag_type.doc.html">Flag_Type</a>] </span></li><li></li><li><span class="tab"><span class="meta">set_flags</span>: [<a class="support type" href="int.doc.html">Int</a>] </span></li><li></li><li><span class="tab"><span class="meta">set_flags_s</span>: [<a class="support type" href="flag_type.doc.html">Flag_Type</a>] </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
