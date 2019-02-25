@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Fee</title>
+    <title>Operation</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -155,7 +155,7 @@
                 Create_Account
             </a>
         </li>
-        <li class="slds-is-active" title="Fee">
+        <li  title="Fee">
             <a href="fee.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Fee
             </a>
@@ -185,7 +185,7 @@
                 Offer_Quote
             </a>
         </li>
-        <li  title="Operation">
+        <li class="slds-is-active" title="Operation">
             <a href="operation.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Operation
             </a>
@@ -311,7 +311,7 @@
     </div>
     <div class="container">
         <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">Fee</h1>
+        <h1 class="slds-text-heading--large">Operation</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -323,7 +323,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Fee</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Name of the fee</span></span></li><li><span class="tab"><span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Description of the fee</span></span></li><li><span class="tab"><span class="meta">description</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Amount the fee will be charged</span></span></li><li><span class="tab"><span class="meta">rate</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Asset that will be used to cover the fee</span></span></li><li><span class="tab"><span class="meta">type</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">Operation</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Type of Stellar operation</span></span></li><li><span class="tab"><span class="meta">op_type</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   Public key for the source account</span></span></li><li><span class="tab"><span class="meta">source_acct</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">description</span>: <a class="support type" href="string.doc.html">String</a> </span></li><li></li><li><span class="tab"><span class="meta">signatures</span>: [<a class="support type" href="signature.doc.html">Signature</a>] </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -334,7 +334,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="query.doc.html" title="Query - ">Query<em></em></a><li></ul>
+        <ul class="require-by"><li><a href="transaction.doc.html" title="Transaction - ">Transaction<em></em></a><li></ul>
     </div>
 </section>
 <footer>
