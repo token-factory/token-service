@@ -1,0 +1,22 @@
+#!/bin/bash
+
+## Retrieve this from the cluster access page
+## https://console.bluemix.net/containers-kubernetes/clusters
+## Click on cluster name and then to access
+export REGION=us-east
+export CLUSTER=
+export KUBECONFIG=
+
+## Create a namespace inside of the blockchain_innovation account
+## this will allow us to use the same api key for deploy and registry
+export IMAGE =      ## bi_todkap/playground-wallet-client
+export IMAGE_REPO = registry.ng.bluemix.net
+export IMAGE_TAG = $(shell date +%Y-%m-%d-%s)
+
+
+## Create API key for testing.
+##https://console.bluemix.net/iam/#/apikeys
+export IBMCLOUD_APIKEY_NAME=
+export IBMCLOUD_APIKEY=
+
+

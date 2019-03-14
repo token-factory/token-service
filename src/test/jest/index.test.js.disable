@@ -1,0 +1,344 @@
+const chai = require('chai');
+const assert = chai.assert;
+const log4js = require('log4js');
+const logger = log4js.getLogger('index.test');
+logger.level = process.env.LOG_LEVEL || 'debug';
+const jsonwebtoken = require('jsonwebtoken');
+const Stellar = require('stellar-sdk');
+
+// application dependencies..
+const app = require('../../app')
+const mongoose = require('mongoose');
+require('../../config/initializers/database');
+
+const util = require('util');
+
+require('axios-debug-log')({
+    request: function (debug, config) {
+        let url = '';
+        if(config){
+            if(config.url){
+                url = config.url
+            }
+        }
+        debug('Axios Request ' + url, util.inspect(config) ) ;
+        //console.log('Axios Request config', JSON.stringify(config));
+    },
+    response: function (debug, response) {
+        debug(
+            'Axios Response from ' + response.config.url,
+            util.inspect(response )
+        );
+        // if(response){
+        //     console.log('Axios Response object', util.inspect(response ) ) ;
+        // }
+    },
+    error: function (debug, error) {
+        // Read https://www.npmjs.com/package/axios#handling-errors for more info
+        debug('Boom', error)
+    }
+})
+
+
+const request = require('supertest');
+
+describe('outer describe', function () {
+    // return json web token
+    const bearerToken = jsonwebtoken.sign({
+        tenantId: '1234',
+        id: '1234',
+        email: 'johndoe@example.com'
+    },
+    process.env.JWT_SECRET,{ expiresIn: '1D' })
+    logger.info('Bearer token',bearerToken );
+
+    //CLEAN UP DB connection
+    afterAll(async(done) => {
+        mongoose.connection.close();
+        done();
+    });
+
+    let bootstrapKeypair = Stellar.Keypair.master();
+
+    let bootstrapPublicKey = bootstrapKeypair.publicKey();
+    let bootstrapSecret = bootstrapKeypair.secret();
+
+    let publicKey = '';
+    describe('Seed new account from source account', () => {
+        it('Seed new account from source account', async(done) => {
+            logger.info('Seed new account from source account', [bootstrapPublicKey, bootstrapSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { createAccountFromSource (description:"newly seeded account" sourcePublicKey:"' + bootstrapPublicKey + '" sourceSecret:"' + bootstrapSecret + '" initialBalance:"200000") {email tenantId publicKey secret thresholds {low_threshold} signers{weight} }}'} );
+            const newSeededAccount = JSON.parse(res.text)['data']['createAccountFromSource']
+            assert.isNotNull(newSeededAccount);
+            assert.isNotNull(newSeededAccount.publicKey);
+            assert.isNotNull(newSeededAccount.description);
+            publicKey = newSeededAccount.publicKey;
+            assert.isNotNull(newSeededAccount.secret);
+            done();
+        },30000)
+    });
+
+    describe('Retrieve newly created account', () => {
+        it('Retrieve newly created account', async(done) => {
+            logger.info('Retrieve new account for source account', [publicKey]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' { getAccount (publicKey:"'+ publicKey + '"){email tenantId publicKey thresholds {low_threshold} signers{weight} }}'} );
+            const newSeededAccount = JSON.parse(res.text)['data']['getAccount']
+            assert.isNotNull(newSeededAccount);
+            assert.isNotNull(newSeededAccount.publicKey);
+            assert.isNotNull(newSeededAccount.description);
+            publicKey = newSeededAccount.publicKey;
+            assert.isNotNull(newSeededAccount.thresholds);
+            assert.isNotNull(newSeededAccount.signers);
+            done();
+        },30000)
+    });
+
+    describe('Get accounts for tenant', () => {
+        it('Get accounts', async(done) => {
+            logger.info('Get accounts');
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' { getAccounts {email description tenantId publicKey secret thresholds{low_threshold} signers{weight}  }}'} )
+            const accountsList = JSON.parse(res.text)['data']['getAccounts']
+            assert.isNotNull(accountsList );
+            done();
+        },30000)
+    });
+    describe('Get balances for account', () => {
+        it('Get balances for accounts', async(done) => {
+            logger.info('Get balance',publicKey);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' { getBalances (publicKey:"'+ publicKey +
+                  '") {network asset_code asset_issuer balance} }'} );
+            const balance = JSON.parse(res.text)['data']['getBalances'];
+            assert.isNotNull(balance );
+            done();
+        },15000)
+    });
+
+    describe('Get history for account', () => {
+        it('Get history for accounts', async(done) => {
+            logger.info('Get history', publicKey);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' { getHistory (publicKey:"'+ publicKey
+                    + '") { id source_account type created_at ... on Create_Account {starting_balance} ... on Payment {amount} } }'} );
+            const balance = JSON.parse(res.text)['data']['getHistory'];
+            assert.isNotNull(balance );
+            done();
+        })
+    });
+
+    describe('Create asset for account', () => {
+        it('Verify creation of asset', async(done) => {
+            logger.info('Create asset', publicKey);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { createAsset (assetIssuer:"'+ publicKey+ '" assetCode:"AstroDollars" '+
+                    'description:"Jetson dollars") { asset_code asset_issuer description tenantId email createdAt updatedAt} }'} );
+            const assetCreated = JSON.parse(res.text)['data']['createAsset'];
+            assert.isNotNull(assetCreated );
+            done();
+        })
+    });
+
+    describe('Get assets for account', () => {
+        it('Verify list of assets returned', async(done) => {
+            logger.info('Get history');
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' { getAssets { asset_code asset_issuer description tenantId email createdAt updatedAt} }'} );
+            const assets = JSON.parse(res.text)['data']['getAssets'];
+            assert.isNotNull(assets );
+            done();
+        })
+    });
+
+    let trustorPublicKey='';
+    let trustorSecret='';
+    describe('Create trustor account for new asset', () => {
+        it('Create trustor account for new asset', async(done) => {
+            logger.info('Create trustor account',[ bootstrapPublicKey, bootstrapSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { createAccountFromSource (description:"trustorAccount" sourcePublicKey:"' + bootstrapPublicKey + '" sourceSecret:"' + bootstrapSecret + '" initialBalance:"100000") {publicKey secret}}'} );
+            const trustorAccountCreated = JSON.parse(res.text)['data']['createAccountFromSource']
+            assert.isNotNull(trustorAccountCreated);
+            assert.isNotNull(trustorAccountCreated.description);
+            assert.isNotNull(trustorAccountCreated.publicKey);
+            trustorPublicKey = trustorAccountCreated.publicKey;
+            assert.isNotNull(trustorAccountCreated.secret);
+            trustorSecret = trustorAccountCreated.secret;
+            done();
+        },30000)
+    });
+
+    let issuerPublicKey='';
+    let issuerSecret='';
+    describe('Create issuer account for new asset', () => {
+        it('Create issuer account for new asset', async(done) => {
+            logger.info('Create issuer account', [ bootstrapPublicKey, bootstrapSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { createAccountFromSource (description:"issuerAccount" sourcePublicKey:"' + bootstrapPublicKey + '" sourceSecret:"' + bootstrapSecret + '" initialBalance:"50000") {publicKey secret}}'} );
+            const issuerAccountCreated = JSON.parse(res.text)['data']['createAccountFromSource']
+            assert.isNotNull(issuerAccountCreated);
+            assert.isNotNull(issuerAccountCreated.description);
+            assert.isNotNull(issuerAccountCreated.publicKey);
+            issuerPublicKey = issuerAccountCreated.publicKey;
+            assert.isNotNull(issuerAccountCreated.secret);
+            issuerSecret = issuerAccountCreated.secret;
+            done();
+        },30000)
+    });
+
+    describe('Trust Asset', () => {
+        it('Trust Asset ', async(done) => {
+            logger.info('Trust Asset issued by ', [issuerPublicKey]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { trustAsset (trustorPublicKey:"' + trustorPublicKey + '" trustorSecret:"' + trustorSecret + '" assetIssuer:"' + issuerPublicKey + '" assetCode:"Yellen" limit:"200000") {id type source_acct description xdr_representation}}'} );
+
+            const trustAssetResult = JSON.parse(res.text)['data']['trustAsset'];
+            assert.isNotNull(trustAssetResult);
+            done();
+        },30000)
+    });
+
+    describe('Make Payment of New Asset', () => {
+        it('Make payment of New Asset ', async(done) => {
+            logger.info('Make Payment of New Asset', [issuerPublicKey, issuerSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { makePayment (senderPublicKey:"' + issuerPublicKey + '" senderSecret:"' + issuerSecret + '" receiverPublicKey:"' + trustorPublicKey + '" assetIssuer:"' + issuerPublicKey + '" assetCode:"Yellen" amount:"200000") {id type source_acct description xdr_representation}}'} );
+            const makePaymentResult = JSON.parse(res.text)['data']['makePayment']
+            assert.isNotNull(makePaymentResult);
+            done();
+        },30000)
+    });
+
+    describe('Add signer', () => {
+        it('Add signer ', async(done) => {
+            logger.info('Add signer', [issuerPublicKey, issuerSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { addSigner (publicKey:"' + issuerPublicKey + '" secret:"' + issuerSecret + '" signer:"' + trustorPublicKey + '" weight:1) {id type source_acct description xdr_representation}}'} );
+            logger.trace('add signer resultz' + res.text);
+            const addSignerResult = JSON.parse(res.text)['data']['addSigner'];
+            assert.isNotNull(addSignerResult);
+            done();
+        },30000)
+    });
+
+    // describe('Set weight threshold options', () => {
+    //     it('Set weight threshold options ', async(done) => {
+    //         logger.info('Set weight threshold options', [issuerPublicKey, issuerSecret]);
+    //         const res = await request(app).post('/account')
+    //             .set('Accept', 'application/json')
+    //             .set('Content-Type', 'application/json')
+    //             .set('Authorization', 'Bearer ' + bearerToken)
+    //             .send({'query':' mutation { setWeightThresholdOptions (publicKey:"' + issuerPublicKey + '" secret:"' + issuerSecret + '" weight:2 low:1 medium:1 high:2) {id type source_acct description xdr_representation}}'} );
+    //         logger.trace('set weight resultz' + res.text);
+    //         const setWeightThresholdOptionsResult = JSON.parse(res.text)['data']['setWeightThresholdOptions'];
+    //         assert.isNotNull(setWeightThresholdOptionsResult);
+    //         done();
+    //     },30000)
+    // });
+
+    /*
+    describe('Delete signer', () => {
+        it('Delete signer ', async(done) => {
+            logger.info('Delete signer', [issuerPublicKey, issuerSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { deleteSigner (publicKey:"' + issuerPublicKey + '" secret:"' + issuerSecret + '" signer:"' + trustorPublicKey + '") {id type source_acct description xdr_representation}}'} );
+            logger.trace('delete signer resultz' + res.text);
+            const deleteSignerResult = JSON.parse(res.text)['data']['deleteSigner'];
+            assert.isNotNull(deleteSignerResult);
+            done();
+        },30000)
+    });
+    */
+
+    let xdr_representation ='';
+    let paymentTransactionId = '';
+
+    describe('Create Payment Transaction', () => {
+        it('Create Payment Transaction ', async(done) => {
+            logger.info('Create Payment Transaction', [issuerPublicKey, issuerSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { createPayment (senderPublicKey:"' + issuerPublicKey + '" receiverPublicKey:"' + trustorPublicKey + '" assetIssuer:"' + issuerPublicKey + '" assetCode:"XLM" amount:"0.1") {id type source_acct xdr_representation}}'} );
+            const createPaymentResult = JSON.parse(res.text)['data']['createPayment'];
+            assert.isNotNull(createPaymentResult);
+            assert.equal(createPaymentResult.source_acct, issuerPublicKey, 'Payment source key does not match');
+            xdr_representation = createPaymentResult.xdr_representation;
+            paymentTransactionId = createPaymentResult.id;
+            done();
+        },30000)
+    });
+
+    describe('Sign transaction', () => {
+        it('Sign Transaction ', async(done) => {
+            logger.info('Sign Transaction', [issuerPublicKey, issuerSecret, xdr_representation, paymentTransactionId]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { signTransaction (publicKey:"' + issuerPublicKey + '" secret:"' + issuerSecret + '" transaction_id:"' + paymentTransactionId + '") {id type source_acct xdr_representation}}'} );
+            const signTransactionResult = JSON.parse(res.text)['data']['signTransaction'];
+            assert.isNotNull(signTransactionResult);
+            assert.equal(signTransactionResult.id, paymentTransactionId, 'Transaction ID does not match');
+            assert.notEqual(signTransactionResult.xdr_representation, xdr_representation, 'Serialized transaction should be different after signature');
+            done();
+        },30000)
+    });
+
+    describe('Submit transaction', () => {
+        it('Submit Transaction ', async(done) => {
+            logger.info('Submit Transaction',[issuerPublicKey, issuerSecret]);
+            const res = await request(app).post('/account')
+                .set('Accept', 'application/json')
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + bearerToken)
+                .send({'query':' mutation { submitTransaction (publicKey:"' + issuerPublicKey + '" secret:"' + issuerSecret + '" transaction_id:"' + paymentTransactionId + '") {id type source_acct xdr_representation}}'} );
+            const submitTransactionResult = JSON.parse(res.text)['data']['submitTransaction'];
+            assert.isNotNull(submitTransactionResult);
+            done();
+        },30000)
+    });
+
+});

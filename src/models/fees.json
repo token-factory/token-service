@@ -1,0 +1,16 @@
+{
+    "FEE_OFFER"  : {
+        "name": "Offering Fee",
+        "description": "Offer transactions will be charged a nominal fee",
+        "rate": "0.1234",
+        "type": "Lumens",
+        "destination": "GCT2HF66UMCZKTRW4CVB3TI62PEYAP5PDH5SSXZC3TEDG7OVW33AEQDE"
+    },
+    "FEE_ISSUANCE"  : {
+        "name": "Issuance Fee",
+        "description": "Issuing of assets will be charged a nominal fee",
+        "rate": "0.2345",
+        "type": "Lumens",
+        "destination": "GBYEBZVLBOMR2FTSGDQ6EUFR477AYFXWXWED2RTG2PQWVQM4KBCXM7HS"
+    }
+}

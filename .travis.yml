@@ -1,0 +1,42 @@
+language: node_js
+node_js:
+  - "node"
+
+branches:
+  only:
+  - master
+
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT}
+
+services:
+  - 'docker'
+  - 'mongodb'
+
+before_install:
+  - 'make prereqs-ibmcloud'
+  - 'make login-ibmcloud'
+  - 'make stellar-quickstart'
+ 
+before_script:
+  - 'make build-app'
+
+after_success:
+  - 'make prune'
+  - 'make docker-image'
+  - 'make push-image'
+  - echo 'completed build process successfully'
+  - 'make create-gh-pages'
+
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  local-dir: ./doc/schema
+  github-url: github.ibm.com
+  verbose: true
+  keep-history: true
+  on:
+    branch: master

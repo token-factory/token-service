@@ -1,0 +1,15 @@
+{
+	"create.account.fail": "Failed to create account",
+	"create.account.fail.invalid.uri": "Failed to create account due to invalid home_domain", 
+	"user.not.authorized": "User is not authorized to access this public key",
+	"incorrect.passphrase": "Transaction failed due to incorrect passphrase",
+	"invalid.stellar.keypair": "Invalid secret supplied for Stellar public key",
+	"transaction.already.signed": "The public key has already signed the specified transaction",
+	"transaction.already.submitted": "The specified transaction has already been signed and successfully submitted",
+	"signer.not.authorized": "The public key is not authorized to sign the specified transaction",
+	"approver.not.authorized": "The public key was not set up as an approver for the pre-authorized transaction",
+	"stellar.transaction.failure": "The transaction failed during submission to the Stellar network",
+	"invalid.deleteOffer.data": "Deleting an offer requires a specific non-zero offerId",
+	"negative.sellAmount.data": "Sell amount cannot be a negative number",
+	"negative.buyAmount.data": "Buy amount cannot be a negative number"
+}
