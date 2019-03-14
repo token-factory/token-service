@@ -49,6 +49,6 @@ The full list of npm scripts are described below.
 ###  API Docs
 | API  | Link |
 | ------------- | ------------- |
-| GraphQL Queries  | https://pages.github.ibm.com/BlockchainInnovation/token-factory-account-service/query.doc.html  |
-| GraphQL Mutations | https://pages.github.ibm.com/BlockchainInnovation/token-factory-account-service/mutation.doc.html  |
+| GraphQL Queries  | https://token-factory.github.io/token-service/query.doc.html  |
+| GraphQL Mutations | https://token-factory.github.io/token-service/mutation.doc.html  |
 
